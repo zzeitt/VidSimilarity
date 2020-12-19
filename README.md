@@ -2,14 +2,20 @@
 * Environments:
     - Python 3.7
     - Scene Cutting
-    ``` bash
-    pip install scenedetect[opencv]
-    ```
+      ``` bash
+      pip install scenedetect[opencv]
+      ```
 * How to run:
     - Install the `scenedetect` module in your python environment.
     - Modify the main file `vid_shot_sec.py`.
         - Set target video path to `s_src_vid`.
         - Set query video path to `s_dst_vid`.
+    - Download and unzip the pretrained model:
+      ```bash
+      wget http://ndd.iti.gr/visil/ckpt.zip
+      unzip ckpt.zip
+      ```
+        - Put extracted folder `ckpt/` in current directory.
 * Where are the results:
     - The result of matching will be saved in `./txt` folder.
     - The video frames will be saved in `./frames` folder.
