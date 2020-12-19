@@ -16,6 +16,7 @@
       unzip ckpt.zip
       ```
         - Put extracted folder `ckpt/` in current directory.
+    - Run main file **`vid_shot_sec.py`**.
 * Where are the results:
     - The result of matching will be saved in `./txt` folder.
     - The video frames will be saved in `./frames` folder.
