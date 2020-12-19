@@ -1,7 +1,10 @@
 # README
 * Environments:
     - Python 3.7
-    - Scene Cutting (pip install scenedetect[opencv])
+    - Scene Cutting
+    ``` bash
+    pip install scenedetect[opencv]
+    ```
 * How to run:
     - Install the `scenedetect` module in your python environment.
     - Modify the main file `vid_shot_sec.py`.
