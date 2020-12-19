@@ -1,3 +1,19 @@
+# README
+* Environments:
+    - Python 3.7
+    - Scene Cutting (pip install scenedetect[opencv])
+* How to run:
+    - Install the `scenedetect` module in your python environment.
+    - Modify the main file `vid_shot_sec.py`.
+        - Set target video path to `s_src_vid`.
+        - Set query video path to `s_dst_vid`.
+* Where are the results:
+    - The result of matching will be saved in `./txt` folder.
+    - The video frames will be saved in `./frames` folder.
+
+
+# Original README (below):
+
 # ViSiL: Fine-grained Spatio-Temporal Video Similarity Learning
 This repository contains the Tensorflow implementation of the paper 
 [ViSiL: Fine-grained Spatio-Temporal Video Similarity Learning](http://openaccess.thecvf.com/content_ICCV_2019/papers/Kordopatis-Zilos_ViSiL_Fine-Grained_Spatio-Temporal_Video_Similarity_Learning_ICCV_2019_paper.pdf). 
