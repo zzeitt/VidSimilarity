@@ -1,25 +1,48 @@
 # README
-* Environments:
-    - Python 3.7
-    - Scene Cutting
-      ``` bash
-      pip install scenedetect[opencv]
-      ```
-* How to run:
-    - Install the `scenedetect` module in your python environment.
-    - Modify the main file `vid_shot_sec.py`.
-        - Set target video path to `s_src_vid`.
-        - Set query video path to `s_dst_vid`.
-    - Download and unzip the pretrained model:
-      ```bash
-      wget http://ndd.iti.gr/visil/ckpt.zip
-      unzip ckpt.zip
-      ```
-        - Put extracted folder `ckpt/` in current directory.
-    - Run main file **`vid_shot_sec.py`**.
-* Where are the results:
-    - The result of matching will be saved in `./txt` folder.
-    - The video frames will be saved in `./frames` folder.
+## Environments:
+- Python 3.7
+- CUDA 10
+- [PySceneDetect](https://github.com/Breakthrough/PySceneDetect)
+- [Faiss](https://github.com/facebookresearch/faiss) (for image based method)
+
+
+## How to run (Sequence Based Method):
+- ``` bash
+  pip install scenedetect[opencv]
+  ```
+- Modify the main file `vid_shot_sec.py`.
+    - Set target video path to `s_src_vid`.
+    - Set query video path to `s_dst_vid`.
+- Download and unzip the pretrained model:
+  ```bash
+  wget http://ndd.iti.gr/visil/ckpt.zip
+  unzip ckpt.zip
+  ```
+    - Put extracted folder `ckpt/` in current directory.
+- Run main file **`vid_shot_sec.py`**.
+
+## How to run (Image Based Method):
+- ```bash 
+  pip install tensorflow-gpu==1.15.4
+  ```
+- ```bash
+  conda install faiss-gpu cudatoolkit=10.0 -c pytorch # For CUDA10
+  ```
+- Modify the main file `vid_shot_sec_inception.py`.
+    - Set target video path to `s_src_vid`.
+    - Set query video path to `s_dst_vid`.
+- Download and unzip the pretrained model:
+  ```bash
+  wget http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz
+  tar -xzvf inception-2015-12-05.tgz
+  ```
+    - Put extracted `classify_image_graph_def.pb` file in `./ckpt/inception`.
+    - Rename the `classify_image_graph_def.pb` to `my_model.pb`.
+- Run main file **`vid_shot_sec_inception.py`.
+
+## Where are the results:
+- The result of matching will be saved in `./txt` folder.
+- The video frames will be saved in `./frames` folder.
 
 
 # Original README (below):
