@@ -117,37 +117,37 @@ def calc_seg_sims_inception(li_src, li_dst):
     for idx_dst, dst in enumerate(tqdm(li_dst)):
         dst_frames = np.array(dst)
         # Get middle frame's index
-        idx_dst = int(len(dst_frames)/2)
-        fname = f'{(idx_dst+1):0{zdst}}.jpg'
+        idx_dst_mid = int(len(dst_frames)/2)
+        fname = f'{(idx_dst_mid+1):0{zdst}}.jpg'
         s_dst_frame = os.path.join(s_save_fr_dst, fname)
         
         # Extract features, shape=(2048, )
         dst_feature = pred_inception_path(s_dst_frame)
+        dst_inceptions.append(dst_feature)
 
         idx_fr = 0
         for i in li_dst[:idx_dst]:
             idx_fr += len(i)
         idx_fr += 1
 
-        dst_inceptions.append(dst_feature)
         dst_fr_segs.append((idx_fr, idx_fr+len(dst)-1))
     
     for idx_src, src in enumerate(tqdm(li_src)):
         src_frames = np.array(src)
         # Get middle frame's index
-        idx_src = int(len(src_frames)/2)
-        fname = f'{(idx_src+1):0{zsrc}}.jpg'
+        idx_src_mid = int(len(src_frames)/2)
+        fname = f'{(idx_src_mid+1):0{zsrc}}.jpg'
         s_src_frame = os.path.join(s_save_fr_src, fname)
         
         # Extract features, shape=(2048, )
         src_feature = pred_inception_path(s_src_frame)
+        src_inceptions.append(src_feature)
 
         idx_fr = 0
         for i in li_src[:idx_src]:
             idx_fr += len(i)
         idx_fr += 1
-        
-        src_inceptions.append(src_feature)
+
         src_fr_segs.append((idx_fr, idx_fr+len(src)-1))
 
     dst_inceptions = np.array(dst_inceptions).astype('float32')
@@ -169,7 +169,8 @@ def calc_seg_sims_inception(li_src, li_dst):
     
     sims_sorted = sorted(sims, key=lambda x: x[2], reverse=False)
     from pprint import pprint
-    pprint(f'====> sims:\n {sims}')
+    pprint(f'====> dst_fr_segs: {dst_fr_segs}')
+    pprint(f'====> src_fr_segs: {src_fr_segs}')
     return sims_sorted
     
 
