@@ -116,39 +116,43 @@ def calc_seg_sims_inception(li_src, li_dst):
     
     for idx_dst, dst in enumerate(tqdm(li_dst)):
         dst_frames = np.array(dst)
+        
+        # Get frame range
+        idx_fr = 0
+        for i in li_dst[:idx_dst]:
+            idx_fr += len(i)
+        idx_fr += 1
+        idx_fr_end = idx_fr+len(dst)-1
+        dst_fr_segs.append((idx_fr, idx_fr_end))
+        
         # Get middle frame's index
-        idx_dst_mid = int(len(dst_frames)/2)
+        idx_dst_mid = idx_fr + int(len(dst)/2)
         fname = f'{(idx_dst_mid+1):0{zdst}}.jpg'
         s_dst_frame = os.path.join(s_save_fr_dst, fname)
         
         # Extract features, shape=(2048, )
         dst_feature = pred_inception_path(s_dst_frame)
         dst_inceptions.append(dst_feature)
-
-        idx_fr = 0
-        for i in li_dst[:idx_dst]:
-            idx_fr += len(i)
-        idx_fr += 1
-
-        dst_fr_segs.append((idx_fr, idx_fr+len(dst)-1))
     
     for idx_src, src in enumerate(tqdm(li_src)):
         src_frames = np.array(src)
+        
+        # Get frame range
+        idx_fr = 0
+        for i in li_src[:idx_src]:
+            idx_fr += len(i)
+        idx_fr += 1
+        idx_fr_end = idx_fr+len(src)-1
+        src_fr_segs.append((idx_fr, idx_fr_end))
+        
         # Get middle frame's index
-        idx_src_mid = int(len(src_frames)/2)
+        idx_src_mid = idx_fr + int(len(src)/2)
         fname = f'{(idx_src_mid+1):0{zsrc}}.jpg'
         s_src_frame = os.path.join(s_save_fr_src, fname)
         
         # Extract features, shape=(2048, )
         src_feature = pred_inception_path(s_src_frame)
         src_inceptions.append(src_feature)
-
-        idx_fr = 0
-        for i in li_src[:idx_src]:
-            idx_fr += len(i)
-        idx_fr += 1
-
-        src_fr_segs.append((idx_fr, idx_fr+len(src)-1))
 
     dst_inceptions = np.array(dst_inceptions).astype('float32')
     src_inceptions = np.array(src_inceptions).astype('float32')
