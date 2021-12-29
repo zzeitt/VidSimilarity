@@ -4,6 +4,7 @@
 *.jpeg
 *.JPEG
 *.png
+!assets/*
 *.mp4
 **/runs
 frames/
