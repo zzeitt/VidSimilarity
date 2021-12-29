@@ -2,10 +2,11 @@
 > 【简介】基于深度学习的方法，实现相似或者重复视频片段的匹配。提供了两种类型的解决方法，一种是基于视频序列的方法，另一种是基于视频帧的方法。基于视频序列的方法参考的是ICCV 2019的文章《ViSiL: Fine-grained Spatio-Temporal Video Similarity Learning》。基于视频帧的方法首先选取视频序列的中间帧，然后通过Inception模型提取该帧的图片特征，最后使用Faiss完成特征的检索匹配。为了降低问题的难度，我们借助了PySceneDetect事先将视频分割为几个小片段。
 
 
-| aquarium    | insert    |
+| name | frames |
 | --- | --- |
-|![aquarium](assets/aquarium.png) | ![insert](assets/insert.png)|
-| (285, 309)  | (388, 416) |
+| aquarium (285-309) |![aquarium](assets/aquarium.png) |
+| insert (388-416) | ![insert](assets/insert.png)|
+
 >  similarity=0.8483464
 
 
